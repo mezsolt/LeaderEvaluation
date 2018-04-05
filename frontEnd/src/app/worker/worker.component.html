@@ -1,0 +1,12 @@
+<h2>Workers!</h2>
+<ul class="worker">
+  <li *ngFor="let worker of workers">
+    <span class="badge">{{worker.id}}</span> {{worker.name}} {{worker.section}}
+  </li>
+</ul>
+<br>
+<button (click)="getWorkers()">getWorkers</button>
+<br>
+<button (click)="addWorker1()">addWorker1</button>
+<br>
+<button (click)="addWorker2()">addWorker2</button>
