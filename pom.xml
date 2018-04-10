@@ -17,8 +17,8 @@
 
 	<packaging>pom</packaging>
 
-	<name>LeaderEvaluation</name>
-	<description>LeaderEvaluationApp</description>
+	<!--<username>LeaderEvaluation</username>
+	<description>LeaderEvaluationApp</description>-->
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

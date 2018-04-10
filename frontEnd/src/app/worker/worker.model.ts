@@ -1,5 +1,8 @@
 export class Worker {
   id: number;
-  name: string;
+  username: string;
+  password: string;
   section: string;
+  leaders: string[];
+  roles: string[];
 }

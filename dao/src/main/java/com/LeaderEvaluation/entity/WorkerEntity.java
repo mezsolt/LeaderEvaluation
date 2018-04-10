@@ -1,9 +1,8 @@
 package com.LeaderEvaluation.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.validator.constraints.UniqueElements;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 
 /**
@@ -17,18 +16,23 @@ public class WorkerEntity {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    @Column(unique = true)
+    private String username;
+    private String password;
     private String section;
     private ArrayList<String> leaders;
+    private ArrayList<String> roles;
 
     public WorkerEntity() {
 
     }
 
-    public WorkerEntity(String name, String section, ArrayList<String> leaders) {
-        this.name = name;
+    public WorkerEntity(String username, String password, String section, ArrayList<String> leaders, ArrayList<String> roles) {
+        this.username = username;
+        this.password = password;
         this.section = section;
         this.leaders = leaders;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -39,12 +43,20 @@ public class WorkerEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getSection() {
@@ -61,5 +73,12 @@ public class WorkerEntity {
 
     public void setLeaders(ArrayList<String> leaders) {
         this.leaders = leaders;
+    }
+
+    public ArrayList<String> getRoles() {
+        return roles;
+    }
+    public void setRoles(ArrayList<String> roles) {
+        this.roles = roles;
     }
 }

@@ -12,5 +12,5 @@ import java.util.List;
 public interface WorkerService {
     WorkerEntity addWorker(WorkerEntity workerEntity);
     List<WorkerEntity> listWorkers();
-
+    WorkerEntity findOneByUsername(String username);
 }

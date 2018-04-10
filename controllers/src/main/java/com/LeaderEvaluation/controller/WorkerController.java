@@ -4,6 +4,8 @@ import com.LeaderEvaluation.entity.WorkerEntity;
 import com.LeaderEvaluation.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +30,9 @@ public class WorkerController {
 
     @RequestMapping(value = "/message", method = RequestMethod.GET)
     String message() {
-        return "workerMessage";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        return "workerMessage " + currentPrincipalName;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -36,9 +40,14 @@ public class WorkerController {
         workerService.addWorker(newWorker);
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     List<WorkerEntity> listWorkers() {
         return workerService.listWorkers();
+    }
+
+    @RequestMapping(value = "/getOne", method = RequestMethod.GET)
+    WorkerEntity getWorker() {
+        return workerService.findOneByUsername("ferko");
     }
 
 }
