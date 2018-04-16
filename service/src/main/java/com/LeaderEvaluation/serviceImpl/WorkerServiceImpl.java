@@ -4,6 +4,9 @@ import com.LeaderEvaluation.entity.WorkerEntity;
 import com.LeaderEvaluation.repository.WorkerRepository;
 import com.LeaderEvaluation.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +20,11 @@ public class WorkerServiceImpl implements WorkerService {
 
     WorkerRepository workerRepository;
 
+    /*@Bean
+    public PasswordEncoder getPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }*/
+
     @Autowired
     public WorkerServiceImpl(WorkerRepository workerRepository) {
         this.workerRepository = workerRepository;
@@ -25,6 +33,7 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Override
     public WorkerEntity addWorker(WorkerEntity workerEntity) {
+        //workerEntity.setPassword(getPasswordEncoder().encode(workerEntity.getPassword()));
         return workerRepository.save(workerEntity);
     }
 

@@ -160,7 +160,7 @@ module.exports = ""
 /***/ "./src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form #workerForm=\"ngForm\" (ngSubmit)=\"login(workerForm.value)\">\n  <div>\n    <label>Username:</label>\n    <input type=\"text\" name=\"username\" ngModel>\n  </div>\n  <div>\n    <label>Password:</label>\n    <input type=\"password\" name=\"password\" ngModel>\n  </div>\n  <button type=\"submit\">Login</button>\n</form>\n\n"
+module.exports = "<form #workerForm=\"ngForm\" (ngSubmit)=\"login(workerForm.value)\">\n  <div>\n    <label>Username:</label>\n    <input type=\"text\" name=\"username\" ngModel>\n  </div>\n  <div>\n    <label>Password:</label>\n    <input type=\"password\" name=\"password\" ngModel>\n  </div>\n  <button type=\"submit\">Login</button>\n</form>\n<button (click)=\"oauth()\">oauth</button>\n"
 
 /***/ }),
 
@@ -181,6 +181,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+var common_1 = __webpack_require__("./node_modules/@angular/common/esm5/common.js");
 var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 var httpOptions = {
     headers: new http_1.HttpHeaders({ 'Content-Type': 'application/json' })
@@ -188,11 +189,15 @@ var httpOptions = {
 var httpOptionsForm = {
     headers: new http_1.HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
 };
+var httpOptionsAuth = {
+    headers: new http_1.HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic ' + btoa("user1:pass1") })
+};
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(http, router, route) {
+    function LoginComponent(http, router, route, location) {
         this.http = http;
         this.router = router;
         this.route = route;
+        this.location = location;
     }
     LoginComponent.prototype.login = function (param) {
         var user = new http_1.HttpParams();
@@ -200,7 +205,16 @@ var LoginComponent = /** @class */ (function () {
         user = user.append('username', param.username);
         user = user.append('password', param.password);
         this.http.post('http://localhost:8080/login', user, httpOptionsForm).subscribe();
-        /*this.router.navigateByUrl();*/
+    };
+    LoginComponent.prototype.oauth = function () {
+        //this.router.navigateByUrl('/workers');
+        //window.location.reload();
+        var user = new http_1.HttpParams();
+        user.append('grant_type', 'password');
+        user.append('username', 'ferko');
+        user.append('password', 'egy');
+        //user.append('client_id','user1');
+        this.http.post('http://localhost:8080/oauth/token', user, httpOptionsAuth).subscribe();
     };
     LoginComponent.prototype.ngOnInit = function () {
     };
@@ -210,7 +224,7 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/login/login.component.html"),
             styles: [__webpack_require__("./src/app/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [http_1.HttpClient, router_1.Router, router_1.ActivatedRoute])
+        __metadata("design:paramtypes", [http_1.HttpClient, router_1.Router, router_1.ActivatedRoute, common_1.Location])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -262,7 +276,7 @@ var WorkerComponent = /** @class */ (function () {
             password: 'egy',
             section: 'section1',
             leaders: ["egy", "egy"],
-            roles: ['USER']
+            roles: ['USER', 'ACTUATOR']
         };
         this.worker2 = {
             id: 50,
@@ -270,7 +284,7 @@ var WorkerComponent = /** @class */ (function () {
             password: 'ketto',
             section: 'section2',
             leaders: ["ketto", "ketto"],
-            roles: ['ADMIN']
+            roles: ['ADMIN', 'ACTUATOR']
         };
     }
     WorkerComponent.prototype.addWorker1 = function () {

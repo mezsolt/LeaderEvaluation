@@ -21,7 +21,7 @@ export class WorkerComponent implements OnInit {
     password:'egy',
     section:'section1',
     leaders:["egy","egy"],
-    roles:['USER']
+    roles:['USER','ACTUATOR']
 
   };
   worker2: Worker = {
@@ -30,7 +30,7 @@ export class WorkerComponent implements OnInit {
     password:'ketto',
     section:'section2',
     leaders:["ketto","ketto"],
-    roles:['ADMIN']
+    roles:['ADMIN','ACTUATOR']
   };
 
   constructor(private http: HttpClient,private workerService: WorkerService) { }

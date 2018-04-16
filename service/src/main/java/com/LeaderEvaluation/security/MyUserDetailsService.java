@@ -1,5 +1,5 @@
 package com.LeaderEvaluation.security;
-
+/*
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by mezsolt on 2018.04.06..
  */
-
+/*
 @Service
 @Transactional
 public class MyUserDetailsService implements UserDetailsService {
@@ -57,4 +57,4 @@ public class MyUserDetailsService implements UserDetailsService {
             return authorities;
         }
 
-}
+}*/
