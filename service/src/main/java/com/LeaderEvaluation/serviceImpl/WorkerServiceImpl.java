@@ -1,7 +1,7 @@
 package com.LeaderEvaluation.serviceImpl;
 
-import com.LeaderEvaluation.repository.WorkerRepository;
 import com.LeaderEvaluation.entity.WorkerEntity;
+import com.LeaderEvaluation.repository.WorkerRepository;
 import com.LeaderEvaluation.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,12 +26,16 @@ public class WorkerServiceImpl implements WorkerService {
     @Override
     public WorkerEntity addWorker(WorkerEntity workerEntity) {
         return workerRepository.save(workerEntity);
-
     }
 
     @Override
     public List<WorkerEntity> listWorkers() {
-        return (List<WorkerEntity>)workerRepository.findAll();
+        return (List<WorkerEntity>) workerRepository.findAll();
+    }
+
+    @Override
+    public WorkerEntity findOneByUsername(String username) {
+        return workerRepository.findOneByUsername(username);
     }
 }
 

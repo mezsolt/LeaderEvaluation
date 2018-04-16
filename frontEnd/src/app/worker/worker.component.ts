@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Worker } from './worker.model';
 import {HttpClient,HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
-import {catchError} from "rxjs/operators";
-import {pipe} from "rxjs/Rx";
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import {WorkerService} from "./worker.service";
 
 @Component({
   selector: 'app-worker',
@@ -17,31 +11,40 @@ const httpOptions = {
 
 export class WorkerComponent implements OnInit {
 
+  title: string = 'LeaderEvaluation';
+
   workers: Worker[];
 
   worker1: Worker = {
     id:100,
-    name:'ferko',
-    section:'section1'
+    username:'ferko',
+    password:'egy',
+    section:'section1',
+    leaders:["egy","egy"],
+    roles:['USER']
+
   };
   worker2: Worker = {
     id:50,
-    name:'marko',
-    section:'section2'
+    username:'marko',
+    password:'ketto',
+    section:'section2',
+    leaders:["ketto","ketto"],
+    roles:['ADMIN']
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private workerService: WorkerService) { }
 
   addWorker1(){
-    this.http.post<Worker>('http://localhost:8080/worker/add',this.worker1,httpOptions).subscribe();
+    this.workerService.addWorker1(this.worker1);
   }
 
   addWorker2(){
-    this.http.post<Worker>('http://localhost:8080/worker/add',this.worker2,httpOptions).subscribe();
+    this.workerService.addWorker2(this.worker2);
   }
 
   getWorkers() {
-    this.http.get<Worker[]>("http://localhost:8080/worker/list").subscribe(data => this.workers = data);
+    this.workerService.getWorkers().subscribe(data => this.workers = data);
   }
 
   ngOnInit() {

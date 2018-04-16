@@ -21,6 +21,7 @@
             <artifactId>jackson-annotations</artifactId>
             <version>RELEASE</version>
         </dependency>
+
     </dependencies>
 
     <build>

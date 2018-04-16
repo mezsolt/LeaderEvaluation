@@ -1,7 +1,13 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<br>
 <h2>Workers!</h2>
 <ul class="worker">
   <li *ngFor="let worker of workers">
-    <span class="badge">{{worker.id}}</span> {{worker.name}} {{worker.section}}
+    <span class="badge">{{worker.id}}</span> {{worker.username}} {{worker.password}} {{worker.section}} {{worker.leaders}} {{worker.roles}}
   </li>
 </ul>
 <br>

@@ -7,18 +7,23 @@ import { AppComponent } from './app.component';
 
 import {HttpClientModule} from "@angular/common/http";
 import { WorkerComponent } from './worker/worker.component';
+import {WorkerService} from "./worker/worker.service";
+import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WorkerComponent
+    WorkerComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [WorkerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
