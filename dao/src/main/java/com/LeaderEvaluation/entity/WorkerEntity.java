@@ -18,6 +18,7 @@ public class WorkerEntity {
 
     @Column(unique = true)
     private String username;
+
     private String password;
     private String section;
     private ArrayList<String> leaders;

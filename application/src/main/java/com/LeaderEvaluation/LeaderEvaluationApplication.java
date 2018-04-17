@@ -10,32 +10,15 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @SpringBootApplication
 public class LeaderEvaluationApplication {
 
-	/*@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
-*/
 	public static void main(String[] args) {
 		SpringApplication.run(LeaderEvaluationApplication.class, args);
 	}
 
-	@Autowired
-	public void authenticationManager(AuthenticationManagerBuilder builder, WorkerRepository repository, WorkerService service) throws Exception {
-		//builder.userDetailsService(userDetailsService(repository)).passwordEncoder(passwordEncoder);
-		builder.userDetailsService(userDetailsService(repository));
-
-	}
-
-	private UserDetailsService userDetailsService(final WorkerRepository repository) {
-		return new UserDetailsService() {
-			@Override
-			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-				return new MyUserDetails(repository.findOneByUsername(username));
-			}
-		};
-	}
 }
