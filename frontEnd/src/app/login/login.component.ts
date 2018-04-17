@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Location} from "@angular/common";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Router} from "@angular/router";
+import {Cookie} from "ng2-cookies";
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,28 +25,25 @@ const httpOptionsAuth = {
 
 export class LoginComponent implements OnInit {
 
-  constructor(private http:HttpClient,private router:Router,private route: ActivatedRoute,private location: Location) {
+  dataMsg: any;
+
+  constructor(private http:HttpClient,private router:Router,private location: Location) {
   }
 
   login(param: any) {
-    let user: HttpParams = new HttpParams();
-    //user = user.append('grant_type', 'password');
-    user = user.append('username', param.username);
-    user = user.append('password', param.password);
-
-    this.http.post('http://localhost:8080/login',user,httpOptionsForm).subscribe();
+    this.http.post('http://localhost:8080/oauth/token?grant_type=password&username='+param.username+'&password='+param.password,null,
+      httpOptionsAuth).subscribe(data => this.saveToken(data));
   }
 
-  oauth() {
-    //this.router.navigateByUrl('/workers');
-    //window.location.reload();
-    let user: HttpParams = new HttpParams();
-    user.append('grant_type', 'password');
-    user.append('username', 'ferko');
-    user.append('password', 'egy');
-    //user.append('client_id','user1');
+  saveToken(token){
+    var expireDate = new Date().getTime() + (1000 * token.expires_in);
+    this.dataMsg = token.access_token;
+    window.localStorage.setItem("access_token",token.access_token);
+    Cookie.set("access_token", token.access_token, expireDate,"/");
+  }
 
-    this.http.post('http://localhost:8080/oauth/token',user,httpOptionsAuth).subscribe();
+  workers() {
+    this.router.navigateByUrl('/workers?access_token='+window.localStorage.getItem('access_token'));
   }
 
   ngOnInit() {

@@ -160,7 +160,7 @@ module.exports = ""
 /***/ "./src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form #workerForm=\"ngForm\" (ngSubmit)=\"login(workerForm.value)\">\n  <div>\n    <label>Username:</label>\n    <input type=\"text\" name=\"username\" ngModel>\n  </div>\n  <div>\n    <label>Password:</label>\n    <input type=\"password\" name=\"password\" ngModel>\n  </div>\n  <button type=\"submit\">Login</button>\n</form>\n<button (click)=\"oauth()\">oauth</button>\n"
+module.exports = "<form #workerForm=\"ngForm\" (ngSubmit)=\"login(workerForm.value)\">\n  <div>\n    <label>Username:</label>\n    <input type=\"text\" name=\"username\" ngModel>\n  </div>\n  <div>\n    <label>Password:</label>\n    <input type=\"password\" name=\"password\" ngModel>\n  </div>\n  <button type=\"submit\">LoginOAuth2</button>\n</form>\n<br>\n{{dataMsg}}\n<br>\n<button (click)=\"workers()\">workers</button>\n"
 
 /***/ }),
 
@@ -183,6 +183,7 @@ var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var common_1 = __webpack_require__("./node_modules/@angular/common/esm5/common.js");
 var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+var ng2_cookies_1 = __webpack_require__("./node_modules/ng2-cookies/index.js");
 var httpOptions = {
     headers: new http_1.HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -193,28 +194,26 @@ var httpOptionsAuth = {
     headers: new http_1.HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8', 'Authorization': 'Basic ' + btoa("user1:pass1") })
 };
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(http, router, route, location) {
+    function LoginComponent(http, router, location) {
         this.http = http;
         this.router = router;
-        this.route = route;
         this.location = location;
     }
     LoginComponent.prototype.login = function (param) {
-        var user = new http_1.HttpParams();
-        //user = user.append('grant_type', 'password');
-        user = user.append('username', param.username);
-        user = user.append('password', param.password);
-        this.http.post('http://localhost:8080/login', user, httpOptionsForm).subscribe();
+        var _this = this;
+        var header = new http_1.HttpHeaders();
+        header.append('Content-Type', 'application/x-www-form-urlencoded');
+        header.append('Authorization', 'Basic ' + btoa("user1:pass1"));
+        this.http.post('http://localhost:8080/oauth/token?grant_type=password&username=' + param.username + '&password=' + param.password, null, httpOptionsAuth).subscribe(function (data) { return _this.saveToken(data); });
     };
-    LoginComponent.prototype.oauth = function () {
-        //this.router.navigateByUrl('/workers');
-        //window.location.reload();
-        var user = new http_1.HttpParams();
-        user.append('grant_type', 'password');
-        user.append('username', 'ferko');
-        user.append('password', 'egy');
-        //user.append('client_id','user1');
-        this.http.post('http://localhost:8080/oauth/token', user, httpOptionsAuth).subscribe();
+    LoginComponent.prototype.saveToken = function (token) {
+        var expireDate = new Date().getTime() + (1000 * token.expires_in);
+        this.dataMsg = token.access_token;
+        window.localStorage.setItem("access_token", token.access_token);
+        ng2_cookies_1.Cookie.set("access_token", token.access_token, expireDate, "/");
+    };
+    LoginComponent.prototype.workers = function () {
+        this.router.navigateByUrl('/workers?access_token=' + window.localStorage.getItem('access_token'));
     };
     LoginComponent.prototype.ngOnInit = function () {
     };
@@ -224,7 +223,7 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/login/login.component.html"),
             styles: [__webpack_require__("./src/app/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [http_1.HttpClient, router_1.Router, router_1.ActivatedRoute, common_1.Location])
+        __metadata("design:paramtypes", [http_1.HttpClient, router_1.Router, common_1.Location])
     ], LoginComponent);
     return LoginComponent;
 }());
