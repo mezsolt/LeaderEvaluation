@@ -1,0 +1,19 @@
+<p>Deleted datas:</p>
+<br>
+<ul class="deleteddata">
+  <li *ngFor="let deleteddata of deletedDatas">
+    <span class="badge">{{deleteddata.id}}</span> {{deleteddata.username}} {{deleteddata.data}} {{deleteddata.deletionDate}}
+  </li>
+</ul>
+<br>
+<button (click)="getDeletedDatas()">getDeletedDatas</button>
+<br>
+<button (click)="logOut()">LogOut</button>
+<br>
+<button (click)="navigateToSalaryData()">SalaryData</button>
+<br>
+<button (click)="navigateToClientData()">ClientData</button>
+<br>
+<button (click)="navigateToUserData()">UserData</button>
+<br>
+<button (click)="navigateToVerifyingCodeData()">VerifyingCodeData</button>

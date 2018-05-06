@@ -1,0 +1,33 @@
+<p>Clients:</p>
+<br>
+<ul class="client">
+  <li *ngFor="let client of clients">
+    <span class="badge"></span> {{client.ip}} {{client.sendDate}}
+  </li>
+</ul>
+<br>
+<button (click)="getClients()">getClients</button>
+<br>
+<p>Clients to delete</p>
+<form #clientDeleteForm="ngForm" (ngSubmit)="deleteClient(clientDeleteForm)">
+  <div>
+    <label>Ip:</label>
+    <input type="text" name="ip" ngModel>
+    <label>Dátum:</label>
+    <input type="text" name="date" ngModel>
+  </div>
+  <button type="submit">Törlés</button>
+  <button type="button" (click)="clearForm(clientDeleteForm)" >Adatok törlése</button>
+</form>
+<br>
+<button (click)="logOut()">LogOut</button>
+<br>
+<button (click)="navigateToSalaryData()">SalaryData</button>
+<br>
+<button (click)="navigateToUserData()">UserData</button>
+<br>
+<button (click)="navigateToDeletedData()">DeletedData</button>
+<br>
+<button (click)="navigateToVerifyingCodeData()">VerifyingCodeData</button>
+
+

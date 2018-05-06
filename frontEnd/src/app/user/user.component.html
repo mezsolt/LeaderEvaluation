@@ -1,0 +1,57 @@
+<p>Users:</p>
+<br>
+<ul class="user">
+  <li *ngFor="let user of users">
+    <span class="badge">{{user.id}}</span> {{user.username}} {{user.roles}}
+  </li>
+</ul>
+<br>
+<p>User hozzáadása:</p>
+<form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+  <div>
+    <label>Username:</label>
+    <input type="text" name="username" value="username" ngModel>
+  </div>
+  <div>
+    <label>Password:</label>
+    <input type="password" name="password" value="password" ngModel>
+  </div>
+  <button type="submit">addUser</button>
+</form>
+<p>Jelszó változtatása:</p>
+<form #userPasswordChangeForm="ngForm" (ngSubmit)="changePassword(userPasswordChangeForm)">
+  <div>
+    <label>Username:</label>
+    <input type="text" name="username" value="username" ngModel>
+  </div>
+  <div>
+    <label>Old password:</label>
+    <input type="password" name="password" value="password" ngModel>
+  </div>
+  <div>
+    <label>New password:</label>
+    <input type="password" name="newPassword" value="newPassword" ngModel>
+  </div>
+  <button type="submit">Jelszóváltás</button>
+</form>
+<p>User törlése</p>
+<form #userDeleteForm="ngForm" (ngSubmit)="deleteUser(userDeleteForm)">
+  <div>
+    <label>Username:</label>
+    <input type="text" name="username" value="username" ngModel>
+  </div>
+  <div>
+  <button type="submit">User törlése</button>
+  </div>
+</form>
+<button (click)="getUsers()">getUsers</button>
+<br>
+<button (click)="logOut()">LogOut</button>
+<br>
+<button (click)="navigateToSalaryData()">SalaryData</button>
+<br>
+<button (click)="navigateToClientData()">ClientData</button>
+<br>
+<button (click)="navigateToDeletedData()">DeletedData</button>
+<br>
+<button (click)="navigateToVerifyingCodeData()">VerifyingCodeData</button>

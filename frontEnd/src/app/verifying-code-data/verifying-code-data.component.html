@@ -1,0 +1,18 @@
+<ul class="code">
+  <li *ngFor="let code of codes">
+    <span class="badge">{{code.id}}</span> {{code.verifyingCode}}
+  </li>
+</ul>
+<br>
+<button (click)="getCodes()">getCodes</button>
+<br>
+<br>
+<button (click)="logOut()">LogOut</button>
+<br>
+<button (click)="navigateToSalaryData()">SalaryData</button>
+<br>
+<button (click)="navigateToClientData()">ClientData</button>
+<br>
+<button (click)="navigateToUserData()">UserData</button>
+<br>
+<button (click)="navigateToDeletedData()">DeletedData</button>

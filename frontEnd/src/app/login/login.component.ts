@@ -23,12 +23,17 @@ export class LoginComponent implements OnInit {
 
   login(param: any) {
     let user: HttpParams = new HttpParams();
-    //user = user.append('grant_type', 'password');
     user = user.append('username', param.username);
     user = user.append('password', param.password);
     this.http.post('http://localhost:8080/login',user,httpOptionsForm).subscribe();
-    /*this.router.navigateByUrl();*/
+    this.router.navigateByUrl('/login');
   }
+
+  logOut() {
+    this.http.get('http://localhost:8080/logout',httpOptions).subscribe();
+    this.router.navigateByUrl('/login');
+  }
+
   ngOnInit() {
   }
 

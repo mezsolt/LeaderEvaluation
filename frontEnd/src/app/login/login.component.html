@@ -1,4 +1,4 @@
-<form #workerForm="ngForm" (ngSubmit)="login(workerForm.value)">
+<form #userForm="ngForm" (ngSubmit)="login(userForm.value)">
   <div>
     <label>Username:</label>
     <input type="text" name="username" ngModel>
@@ -9,4 +9,5 @@
   </div>
   <button type="submit">Login</button>
 </form>
+<button (click)="logOut()">LogOut</button>
 
