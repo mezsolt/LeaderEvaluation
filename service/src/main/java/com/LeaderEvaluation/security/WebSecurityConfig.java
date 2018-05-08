@@ -29,8 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().maximumSessions(5);
-        http.authorizeRequests().antMatchers("/*","/worker/add","/worker/list","/worker/getOne","/evaluation/**","/login").permitAll()
-                .antMatchers("/worker/message").hasAuthority("USER").anyRequest().authenticated()
+        http.authorizeRequests().antMatchers("/salary/**","/login").permitAll()
+                .and().authorizeRequests().antMatchers("/clientdata","/codedata","/salarydata","/user","/deleteddata").authenticated()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
         http.csrf().disable();

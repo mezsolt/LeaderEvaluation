@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'LeaderEvaluation';
+  title = 'Salary';
+
+  constructor(private router: Router) {
+
+  }
+
+  navigateToSearchForm() {
+    this.router.navigateByUrl('/salary/search');
+  }
+
+  navigateToCodeVerification() {
+    this.router.navigateByUrl('/salary/verification');
+  }
+
+  navigateToSalaryForm() {
+    this.router.navigateByUrl('/salary');
+  }
 }

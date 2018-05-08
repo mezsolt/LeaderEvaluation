@@ -3,8 +3,8 @@ package com.LeaderEvaluation.security;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.LeaderEvaluation.entity.WorkerEntity;
-import com.LeaderEvaluation.repository.WorkerRepository;
+import com.LeaderEvaluation.entity.UserEntity;
+import com.LeaderEvaluation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,12 +25,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class MyUserDetailsService implements UserDetailsService {
 
         @Autowired
-        private WorkerRepository workerRepository;
+        private UserRepository userRepository;
 
         public UserDetails loadUserByUsername(String username)
                 throws UsernameNotFoundException {
 
-            WorkerEntity user = workerRepository.findOneByUsername(username);
+            UserEntity user = userRepository.findOneByUsername(username);
 
             if(user == null) {
                 throw new UsernameNotFoundException(
