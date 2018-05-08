@@ -20,6 +20,13 @@ export class UserComponent implements OnInit {
   constructor(private http: HttpClient,private router: Router) { }
 
   ngOnInit() {
+    this.http.get<boolean>("http://localhost:8080/loggedin").subscribe(data => this.loggedInCheck(data));
+  }
+
+  loggedInCheck(data: boolean){
+    if(data == false) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   getUsers() {
@@ -45,7 +52,7 @@ export class UserComponent implements OnInit {
         password: form.controls['password'].value,
         roles: [''],
       }
-      this.http.post<User>('http://localhost:8080/user/changepw?newPassword='+form.controls['newPassword'].value,user,httpOptions).subscribe();
+      this.http.post('http://localhost:8080/user/changepw?newPassword='+form.controls['newPassword'].value,user,httpOptions).subscribe();
     }
   }
 
@@ -67,6 +74,10 @@ export class UserComponent implements OnInit {
 
   navigateToClientData() {
     this.router.navigateByUrl("/clientdata")
+  }
+
+  navigateToUserData() {
+    this.router.navigateByUrl("/user")
   }
 
   navigateToDeletedData() {

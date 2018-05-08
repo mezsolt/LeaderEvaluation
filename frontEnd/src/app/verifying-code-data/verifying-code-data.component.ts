@@ -19,6 +19,13 @@ export class VerifyingCodeDataComponent implements OnInit {
   constructor(private http : HttpClient,private router: Router) { }
 
   ngOnInit() {
+    this.http.get<boolean>("http://localhost:8080/loggedin").subscribe(data => this.loggedInCheck(data));
+  }
+
+  loggedInCheck(data: boolean){
+    if(data == false) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   getCodes() {
@@ -44,6 +51,10 @@ export class VerifyingCodeDataComponent implements OnInit {
 
   navigateToDeletedData() {
     this.router.navigateByUrl("/deleteddata")
+  }
+
+  navigateToVerifyingCodeData() {
+    this.router.navigateByUrl("/codedata")
   }
 
 }

@@ -1,3 +1,7 @@
+<div id="container">
+  <br>
+  <br>
+  <h2>Keressen átlagfizetést:</h2>
 <form #salarySearchForm="ngForm" (ngSubmit)="sendSearchRequest(salarySearchForm)">
   <div>
     <label>Neme:</label>
@@ -49,6 +53,7 @@
       <option *ngFor="let education of educations" value={{education}}>{{education}}</option>
     </select>
   </div>
+  <br>
   <button type="submit">Küldés</button>
   <button type="button" (click)="clearSearchForm(salarySearchForm)">Adatok törlése</button>
 </form>
@@ -56,7 +61,4 @@
 <p id="warningMessageFillEverythingSearchForm" [hidden]="warningFillEverythingSearchForm != true">Kérjük töltse ki az összes mezőt!</p>
 <br>
 <p [hidden]="averageSalary == 0">Keresés szerinti átlag fizetés: {{averageSalary}} HUF</p>
-<br>
-<button (click)="navigateToSalaryForm()">SalaryForm</button>
-<br>
-<button (click)="navigateToCodeVerification()">VerificationForm</button>
+</div>

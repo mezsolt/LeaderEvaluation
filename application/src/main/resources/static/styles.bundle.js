@@ -3,7 +3,7 @@ webpackJsonp(["styles"],{
 /***/ "./node_modules/raw-loader/index.js!./node_modules/postcss-loader/lib/index.js??embedded!./src/styles.css":
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\nbody{\n  background-color: lightgray;\n}\n"
+module.exports = "/* You can add global styles to this file, and also import other style files */\nbody{\n  background-color: lightgray;\n}\nh2 {\n  text-align: center;\n}\nselect {\n  background-color: antiquewhite;\n  width: 250px;\n  margin: 1px auto;\n}\nlabel {\n  display: block;\n}\n#container {\n  text-align: center;\n  background-color: lightgray;\n}\nbutton {\n  background-color: #008CBA;\n  border: none;\n  color: white;\n  padding: 10px 10px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n}\nli {\n  list-style: none;\n}\ninput[type=\"number\"] {\n  background-color: antiquewhite;\n  margin: 1px auto;\n}\ninput[type=\"text\"] {\n  background-color: antiquewhite;\n  margin: 1px auto;\n}\ninput[type=\"password\"] {\n  background-color: antiquewhite;\n  margin: 1px auto;\n}\n"
 
 /***/ }),
 

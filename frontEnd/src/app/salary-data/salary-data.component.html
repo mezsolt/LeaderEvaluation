@@ -1,12 +1,14 @@
-<br>
-<ul class="salary">
-  <li *ngFor="let salary of salaries">
-    <span class="badge">{{salary.id}}</span> {{salary.gender}} {{salary.age}} {{salary.foreignLanguages}} {{salary.position}} {{salary.experience}}
-    {{salary.placeOfWork}} {{salary.educationAttained}} {{salary.salary}}
-  </li>
-</ul>
-<br>
-<button (click)="getSalaries()">getSalaries</button>
+<div id="container">
+  <br>
+  <button (click)="logOut()">Logout</button>
+  <button (click)="navigateToSalaryData()">Fizetés</button>
+  <button (click)="navigateToClientData()">Kliens</button>
+  <button (click)="navigateToUserData()">Felhasználó</button>
+  <button (click)="navigateToDeletedData()">Törölt adat</button>
+  <button (click)="navigateToVerifyingCodeData()">Ellenőrző kód</button>
+  <br>
+  <br>
+  <p>Keresés:</p>
 <form #salarySearchForm="ngForm" (ngSubmit)="sendSearchRequest(salarySearchForm)">
   <div>
     <label>Neme:</label>
@@ -58,19 +60,20 @@
       <option *ngFor="let education of educations" value={{education}}>{{education}}</option>
     </select>
   </div>
-  <button type="submit">Küldés</button>
+  <br>
+  <button type="submit">Keresés</button>
   <button type="button" (click)="clearForm(salarySearchForm)">Adatok törlése</button>
 </form>
 <br>
-<p>Keresett Salaryk: </p>
+<p>Keresett fizetések: </p>
 <ul class="salary">
   <li *ngFor="let salary of searchedSalaryForms">
-    <span class="badge">{{salary.id}}</span> {{salary.gender}} {{salary.age}} {{salary.foreignLanguages}} {{salary.position}} {{salary.experience}}
+    {{salary.gender}} {{salary.age}} {{salary.foreignLanguages}} {{salary.position}} {{salary.experience}}
     {{salary.placeOfWork}} {{salary.educationAttained}} {{salary.salary}}
   </li>
 </ul>
 <br>
-<p>Salary törlése:</p>
+<p>Fizetések törlése:</p>
 <form #salaryDeleteForm="ngForm" (ngSubmit)="deleteSalary(salaryDeleteForm)">
   <div>
     <label>Neme:</label>
@@ -122,16 +125,18 @@
       <option *ngFor="let education of educations" value={{education}}>{{education}}</option>
     </select>
   </div>
+  <br>
   <button type="submit">Törlés</button>
   <button type="button" (click)="clearForm(salaryDeleteForm)">Adatok törlése</button>
 </form>
-<br>
-<button (click)="logOut()">LogOut</button>
-<br>
-<button (click)="navigateToClientData()">ClientData</button>
-<br>
-<button (click)="navigateToUserData()">UserData</button>
-<br>
-<button (click)="navigateToDeletedData()">DeletedData</button>
-<br>
-<button (click)="navigateToVerifyingCodeData()">VerifyingCodeData</button>
+  <br>
+  <button (click)="getSalaries()">Fizetések listázása</button>
+  <br>
+  <ul class="salary">
+    <li *ngFor="let salary of salaries">
+      <span class="badge">{{salary.id}}</span> {{salary.gender}} {{salary.age}} {{salary.foreignLanguages}} {{salary.position}} {{salary.experience}}
+      {{salary.placeOfWork}} {{salary.educationAttained}} {{salary.salary}}
+    </li>
+  </ul>
+  <br>
+</div>

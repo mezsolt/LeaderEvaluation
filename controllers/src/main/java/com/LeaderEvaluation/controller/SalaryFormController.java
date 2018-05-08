@@ -51,7 +51,6 @@ public class SalaryFormController {
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     private void addSalaryForm(@RequestParam String code, @RequestBody SalaryFormEntity salaryFormEntity, HttpServletRequest request) throws IOException {
         LocalDateTime date = LocalDateTime.now();
-        System.out.println(date);
         if(code.equals("null")) {
             if(this.clientService.ipAllowed(request.getRemoteAddr(),date)) {
                 this.salaryFormService.addSalaryForm(salaryFormEntity);

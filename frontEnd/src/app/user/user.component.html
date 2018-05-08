@@ -1,57 +1,61 @@
-<p>Users:</p>
+<div id="container">
+  <br>
+  <button (click)="logOut()">Logout</button>
+  <button (click)="navigateToSalaryData()">Fizetés</button>
+  <button (click)="navigateToClientData()">Kliens</button>
+  <button (click)="navigateToUserData()">Felhasználó</button>
+  <button (click)="navigateToDeletedData()">Törölt adat</button>
+  <button (click)="navigateToVerifyingCodeData()">Ellenőrző kód</button>
+  <br>
 <br>
-<ul class="user">
-  <li *ngFor="let user of users">
-    <span class="badge">{{user.id}}</span> {{user.username}} {{user.roles}}
-  </li>
-</ul>
-<br>
-<p>User hozzáadása:</p>
+<p>Felhasználó hozzáadása:</p>
 <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
   <div>
-    <label>Username:</label>
+    <label>Felhasználónév:</label>
     <input type="text" name="username" value="username" ngModel>
   </div>
   <div>
-    <label>Password:</label>
+    <label>Jelszó:</label>
     <input type="password" name="password" value="password" ngModel>
   </div>
-  <button type="submit">addUser</button>
+  <br>
+  <button type="submit">Új felhasználó</button>
 </form>
 <p>Jelszó változtatása:</p>
 <form #userPasswordChangeForm="ngForm" (ngSubmit)="changePassword(userPasswordChangeForm)">
   <div>
-    <label>Username:</label>
+    <label>Felhasználónév:</label>
     <input type="text" name="username" value="username" ngModel>
   </div>
   <div>
-    <label>Old password:</label>
+    <label>Régi jelszó:</label>
     <input type="password" name="password" value="password" ngModel>
   </div>
   <div>
-    <label>New password:</label>
+    <label>Új jelszó:</label>
     <input type="password" name="newPassword" value="newPassword" ngModel>
   </div>
+  <br>
   <button type="submit">Jelszóváltás</button>
 </form>
-<p>User törlése</p>
+<p>Felhasználó törlése</p>
 <form #userDeleteForm="ngForm" (ngSubmit)="deleteUser(userDeleteForm)">
   <div>
-    <label>Username:</label>
+    <label>Felhasználónév:</label>
     <input type="text" name="username" value="username" ngModel>
   </div>
   <div>
-  <button type="submit">User törlése</button>
+    <br>
+  <button type="submit">Felhasználó törlése</button>
   </div>
 </form>
-<button (click)="getUsers()">getUsers</button>
-<br>
-<button (click)="logOut()">LogOut</button>
-<br>
-<button (click)="navigateToSalaryData()">SalaryData</button>
-<br>
-<button (click)="navigateToClientData()">ClientData</button>
-<br>
-<button (click)="navigateToDeletedData()">DeletedData</button>
-<br>
-<button (click)="navigateToVerifyingCodeData()">VerifyingCodeData</button>
+  <br>
+<button (click)="getUsers()">Felhasználók listázása</button>
+  <br>
+  <p>Felhasználók:</p>
+  <ul class="user">
+    <li *ngFor="let user of users">
+      <span class="badge">{{user.id}}</span> {{user.username}} {{user.roles}}
+    </li>
+  </ul>
+</div>

@@ -11,6 +11,7 @@ import {DeletedDataComponent} from "./deleted-data/deleted-data.component";
 import {UserComponent} from "./user/user.component";
 
 const routes: Routes = [
+  { path: '', redirectTo: '/salary', pathMatch: 'full' },
   { path: 'login', redirectTo: '/login', pathMatch: 'full' },
   {path: 'login', component: LoginComponent },
   { path: 'salary', redirectTo: '/salary', pathMatch: 'full' },

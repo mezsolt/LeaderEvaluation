@@ -1,33 +1,35 @@
-<p>Clients:</p>
+<div id="container">
+  <br>
+  <button (click)="logOut()">Logout</button>
+  <button (click)="navigateToSalaryData()">Fizetés</button>
+  <button (click)="navigateToClientData()">Kliens</button>
+  <button (click)="navigateToUserData()">Felhasználó</button>
+  <button (click)="navigateToDeletedData()">Törölt adat</button>
+  <button (click)="navigateToVerifyingCodeData()">Ellenőrző kód</button>
+  <br>
 <br>
-<ul class="client">
-  <li *ngFor="let client of clients">
-    <span class="badge"></span> {{client.ip}} {{client.sendDate}}
-  </li>
-</ul>
-<br>
-<button (click)="getClients()">getClients</button>
-<br>
-<p>Clients to delete</p>
+<p>Kliensek törlése:</p>
 <form #clientDeleteForm="ngForm" (ngSubmit)="deleteClient(clientDeleteForm)">
   <div>
-    <label>Ip:</label>
+    <label>IP:</label>
     <input type="text" name="ip" ngModel>
     <label>Dátum:</label>
     <input type="text" name="date" ngModel>
   </div>
+  <br>
   <button type="submit">Törlés</button>
   <button type="button" (click)="clearForm(clientDeleteForm)" >Adatok törlése</button>
 </form>
-<br>
-<button (click)="logOut()">LogOut</button>
-<br>
-<button (click)="navigateToSalaryData()">SalaryData</button>
-<br>
-<button (click)="navigateToUserData()">UserData</button>
-<br>
-<button (click)="navigateToDeletedData()">DeletedData</button>
-<br>
-<button (click)="navigateToVerifyingCodeData()">VerifyingCodeData</button>
+  <br>
+  <button (click)="getClients()">Kliensek listázása</button>
+  <br>
+  <p>Kliensek:</p>
+  <ul class="client">
+    <li *ngFor="let client of clients">
+      {{client.ip}} {{client.sendDate}}
+    </li>
+  </ul>
+  <br>
 
+</div>
 

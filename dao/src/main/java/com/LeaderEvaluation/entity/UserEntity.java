@@ -20,7 +20,6 @@ public class UserEntity {
     @Column(unique = true)
     private String username;
 
-    @JsonIgnore
     private String password;
 
     private ArrayList<String> roles;

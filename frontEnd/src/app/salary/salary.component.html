@@ -1,11 +1,9 @@
 <div id="container">
+  <br>
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
 </div>
 <br>
-<h2>Kérjük töltse ki az űrlapot.</h2>
+<h2>Adja meg fizetését:</h2>
 <form  #salaryForm="ngForm" (ngSubmit)="sendSalary(salaryForm)">
   <div>
     <label>Neme:</label>
@@ -52,7 +50,7 @@
   </div>
   <div>
     <label>Fizetése:</label>
-    <input type="number" name="salary" min="100000" ngModel> HUF
+    <input type="number" name="salary" min="100000" max ="1000000" autocomplete="off" ngModel> HUF
   </div>
   <div>
     <label>Szeretne-e egy kitöltés igazoló kódot kapni:</label>
@@ -61,20 +59,14 @@
       <option  value="Nem">Nem</option>
     </select>
   </div>
+  <br>
   <button type="submit">Küldés</button>
   <button type="button" (click)="clearForm(salaryForm)" >Adatok törlése</button>
 </form>
-<br>
+  <br>
 <p id="cantSend" [hidden]="ipBlocked != true">Még nem küldhet újra! Kérjük várjon 2 percet két küldés között!</p>
-<br>
 <p id="verifyCodeValue" [hidden]="userWantVerifyingCode != true">Az Ön igazoló kódja: {{verifyingCode}}</p>
-<br>
 <p id="warningMessageFillEverything" [hidden]="warningFillEverything != true">Kérjük töltse ki az összes mezőt!</p>
-<br>
 <p id="warningMessageWrongSalary" [hidden]="warningWrongSalary != true">Helytelen fizetés!</p>
-<br>
-<button (click)="navigateToSearchForm()">SearchForm</button>
-<br>
-<button (click)="navigateToCodeVerification()">VerficiationForm</button>
 </div>
 

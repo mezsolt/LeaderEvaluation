@@ -19,6 +19,13 @@ export class DeletedDataComponent implements OnInit {
   constructor(private http: HttpClient,private router: Router) { }
 
   ngOnInit() {
+    this.http.get<boolean>("http://localhost:8080/loggedin").subscribe(data => this.loggedInCheck(data));
+  }
+
+  loggedInCheck(data: boolean){
+    if(data == false) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   getDeletedDatas() {
@@ -40,6 +47,10 @@ export class DeletedDataComponent implements OnInit {
 
   navigateToUserData() {
     this.router.navigateByUrl("/user")
+  }
+
+  navigateToDeletedData() {
+    this.router.navigateByUrl("/deleteddata")
   }
 
   navigateToVerifyingCodeData() {

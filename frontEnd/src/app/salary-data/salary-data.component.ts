@@ -35,6 +35,13 @@ export class SalaryDataComponent implements OnInit {
   constructor(private http: HttpClient,private router: Router) { }
 
   ngOnInit() {
+    this.http.get<boolean>("http://localhost:8080/loggedin").subscribe(data => this.loggedInCheck(data));
+  }
+
+  loggedInCheck(data: boolean){
+    if(data == false) {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   getSalaries() {
@@ -98,6 +105,10 @@ export class SalaryDataComponent implements OnInit {
   logOut() {
     this.http.get('http://localhost:8080/logout',httpOptions).subscribe();
     this.router.navigateByUrl('/login');
+  }
+
+  navigateToSalaryData() {
+    this.router.navigateByUrl("/salarydata")
   }
 
   navigateToClientData() {

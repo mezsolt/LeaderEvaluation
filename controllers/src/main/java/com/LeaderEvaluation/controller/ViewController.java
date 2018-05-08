@@ -31,4 +31,15 @@ public class ViewController {
         return "forward:/login";//
     }
 
+    @RequestMapping(value = "/loggedin", method = RequestMethod.GET)
+    @ResponseBody
+    public boolean loggedIn() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        boolean loggedIn = false;
+        if(auth != null && !auth.getPrincipal().equals("anonymousUser")) {
+            loggedIn = true;
+        }
+        return loggedIn;
+    }
+
 }

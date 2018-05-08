@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,19 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Salary';
 
+  constructor(private router: Router) {
+
+  }
+
+  navigateToSearchForm() {
+    this.router.navigateByUrl('/salary/search');
+  }
+
+  navigateToCodeVerification() {
+    this.router.navigateByUrl('/salary/verification');
+  }
+
+  navigateToSalaryForm() {
+    this.router.navigateByUrl('/salary');
+  }
 }

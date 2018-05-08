@@ -81,6 +81,7 @@ export class SalaryComponent implements OnInit {
           this.warningFillEverything = false;
           this.warningWrongSalary = false;
           this.ipBlocked = false;
+          this.verifyingCode = '';
           Cookie.set("voteCookie", 'Kuldes tiltva.', 0.00138889,"/");
         }
       }

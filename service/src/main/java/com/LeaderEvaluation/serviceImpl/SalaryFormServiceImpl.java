@@ -72,42 +72,34 @@ public class SalaryFormServiceImpl implements SalaryFormService{
         if(!salaryFormEntity.getGender().equals("Férfi") &&
                 !salaryFormEntity.getGender().equals("Nő")
                 ) {
-            System.out.println("warningGender: " + salaryFormEntity.getGender());
             return false;
         }
 
         if(salaryFormEntity.getSalary() < 100000 || salaryFormEntity.getSalary() > 1000000) {
-            System.out.println("warningSalary: " + salaryFormEntity.getSalary());
             return false;
         }
 
         if(!getListFromFile("ageList").contains(salaryFormEntity.getAge())) {
-            System.out.println("warningAge: " + salaryFormEntity.getAge());
             return false;
         }
 
         if(!getListFromFile("placeOfWorkList").contains(salaryFormEntity.getPlaceOfWork())) {
-            System.out.println("warningPlaceOfWork: " + salaryFormEntity.getPlaceOfWork());
             return false;
         }
 
         if(!getListFromFile("educationAttainedList").contains(salaryFormEntity.getEducationAttained())) {
-            System.out.println("warningEducationAttained: " + salaryFormEntity.getEducationAttained());
             return false;
         }
 
         if(!getListFromFile("foreignLanguagesList").contains(salaryFormEntity.getForeignLanguages())) {
-            System.out.println("warningForeignLanguages: " + salaryFormEntity.getForeignLanguages());
             return false;
         }
 
         if(!getListFromFile("workExperienceList").contains(salaryFormEntity.getExperience())) {
-            System.out.println("warningExperienceList: " + salaryFormEntity.getExperience());
             return false;
         }
 
         if(!getListFromFile("workPositionList").contains(salaryFormEntity.getPosition())) {
-            System.out.println("warningPostion: " + salaryFormEntity.getPosition());
             return false;
         }
 
@@ -161,7 +153,7 @@ public class SalaryFormServiceImpl implements SalaryFormService{
         int result=0;
 
         if(!validateSearchSalaryRequest(searchSalaryRequest)) {
-
+            throw new ValidationFailedException();
         }
 
         for(int i=0;i<salaryFormEntities.size();i++) {
@@ -193,37 +185,30 @@ public class SalaryFormServiceImpl implements SalaryFormService{
                 !searchSalaryRequest.getGender().equals("Nő") &&
                 !searchSalaryRequest.getGender().equals("Összes")
                 ) {
-            System.out.println("warningGender: " + searchSalaryRequest.getGender());
             return false;
         }
 
         if(!getListFromFile("ageList").contains(searchSalaryRequest.getAge()) && !searchSalaryRequest.getAge().equals("Összes")) {
-            System.out.println("warningAge: " + searchSalaryRequest.getAge());
             return false;
         }
 
         if(!getListFromFile("placeOfWorkList").contains(searchSalaryRequest.getPlaceOfWork()) && !searchSalaryRequest.getPlaceOfWork().equals("Összes")) {
-            System.out.println("warningPlaceOfWork: " + searchSalaryRequest.getPlaceOfWork());
             return false;
         }
 
         if(!getListFromFile("educationAttainedList").contains(searchSalaryRequest.getEducationAttained()) && !searchSalaryRequest.getEducationAttained().equals("Összes")) {
-            System.out.println("warningEducationAttained: " + searchSalaryRequest.getEducationAttained());
             return false;
         }
 
         if(!getListFromFile("foreignLanguagesList").contains(searchSalaryRequest.getForeignLanguages()) && !searchSalaryRequest.getForeignLanguages().equals("Összes")) {
-            System.out.println("warningForeignLanguages: " + searchSalaryRequest.getForeignLanguages());
             return false;
         }
 
         if(!getListFromFile("workExperienceList").contains(searchSalaryRequest.getExperience()) && !searchSalaryRequest.getExperience().equals("Összes")) {
-            System.out.println("warningExperienceList: " + searchSalaryRequest.getExperience());
             return false;
         }
 
         if(!getListFromFile("workPositionList").contains(searchSalaryRequest.getPosition()) && !searchSalaryRequest.getPosition().equals("Összes")) {
-            System.out.println("warningPostion: " + searchSalaryRequest.getPosition());
             return false;
         }
 
